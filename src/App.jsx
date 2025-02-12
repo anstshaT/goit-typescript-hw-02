@@ -14,7 +14,9 @@ function App() {
 
     async function fetchImages() {
       try {
-        const data = await fetchImagesWithTopic();
+        const data = await fetchImagesWithTopic(query, page);
+        console.log("Fetched images:", data);
+        /* setImages((prevImages) => [...prevImages, ...data]); */
         setImages(data);
       } catch (error) {
         console.log(`Problem: ${error}`);
@@ -24,8 +26,10 @@ function App() {
     fetchImages();
   }, [query, page]);
 
-  const newTopic = (e) => {
-    setQuery(e.target.value);
+  const handleSearch = (topic) => {
+    setQuery(topic);
+    setImages([]);
+    setPage(1);
   };
 
   const nextPage = () => {
@@ -34,7 +38,7 @@ function App() {
 
   return (
     <>
-      <SearchBar onClick={nextPage} onChange={newTopic} />
+      <SearchBar onSubmit={handleSearch} />
       <ImageGallery images={images} />
     </>
   );

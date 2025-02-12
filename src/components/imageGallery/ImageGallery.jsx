@@ -1,11 +1,14 @@
 import ImageCard from "../imageCard/ImageCard";
+import s from "./ImageGallery.module.css";
 
 const ImageGallery = ({ images }) => {
+  console.log("Images received in Gallery:", images);
+
   return (
-    <ul>
+    <ul className={s.galleryUl}>
       {images.map((image) => {
         return (
-          <li key={image.id}>
+          <li key={image.id} className={s.galleryLi}>
             <ImageCard src={image.urls.small} alt={image.alt_description} />
           </li>
         );

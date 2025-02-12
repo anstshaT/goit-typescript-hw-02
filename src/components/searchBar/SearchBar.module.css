@@ -1,5 +1,13 @@
 .header {
   position: fixed;
+  background-color: #a1938b;
+  width: 100%;
+  top: 0;
+  left: 0;
+  padding: 5px 0;
+  display: flex;
+  justify-content: space-around;
+  height: 50px;
 }
 
 .form {
@@ -7,7 +15,7 @@
   background-color: transparent;
   display: flex;
   flex-direction: row-reverse;
-  gap: 30px;
+  gap: 15px;
   border-radius: 10px;
   font-size: 20px;
 }
@@ -17,8 +25,19 @@
   background-color: transparent;
   width: 260px;
   height: 35px;
-  padding: 5px;
+  padding: 5px 10px;
   border-radius: 10px;
+  border: 0.5px solid black;
+  transition: box-shadow 250ms linear;
+}
+
+.input:hover {
+  box-shadow: 0px 0px 24px -5px black;
+  border: none;
+}
+
+.input:focus {
+  outline: none;
   box-shadow: 0px 0px 24px -5px black;
 }
 
@@ -26,8 +45,13 @@
   border: none;
   background-color: transparent;
   cursor: pointer;
-  padding: 2px 12px;
+  padding: 1px 15px;
   font-size: 20px;
+  border-radius: 50px;
+  transition: box-shadow 250ms linear;
+}
+
+.formBtn:hover,
+.formBtn:focus {
   box-shadow: 0px 0px 24px -5px black;
-  border-radius: 10px;
 }

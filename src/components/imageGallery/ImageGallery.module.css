@@ -1,0 +1,7 @@
+.galleryUl {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+  margin-top: 50px;
+}

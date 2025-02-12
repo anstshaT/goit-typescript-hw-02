@@ -1,10 +1,9 @@
+import s from "./ImageCard.module.css";
+
 const ImageCard = ({ src, alt }) => {
-  if (!src) {
-    console.log("Problem with src in ImageCard");
-  }
   return (
     <div>
-      <img src={src} alt={alt} />
+      <img src={src} alt={alt} className={s.image} />
     </div>
   );
 };
