@@ -3,23 +3,32 @@ import "./App.css";
 import SearchBar from "./components/searchBar/SearchBar";
 import { fetchImagesWithTopic } from "./services/api";
 import ImageGallery from "./components/imageGallery/ImageGallery";
+import Loader from "./components/loader/Loader";
+import ErrorMessage from "./components/errorMessage/ErrorMessage";
+import LoadMoreBtn from "./components/loadMoreBtn/LoadMoreBtn";
 
 function App() {
   const [images, setImages] = useState([]);
   const [query, setQuery] = useState("");
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     if (!query) return;
 
     async function fetchImages() {
       try {
+        setError(false);
+        setLoading(true);
         const data = await fetchImagesWithTopic(query, page);
         console.log("Fetched images:", data);
-        /* setImages((prevImages) => [...prevImages, ...data]); */
-        setImages(data);
+        setImages((prevData) => [...prevData, ...data]);
       } catch (error) {
         console.log(`Problem: ${error}`);
+        setError(true);
+      } finally {
+        setLoading(false);
       }
     }
 
@@ -32,14 +41,19 @@ function App() {
     setPage(1);
   };
 
-  const nextPage = () => {
-    setPage(page + 1);
+  const loadMore = () => {
+    setPage((lastPage) => lastPage + 1);
   };
 
   return (
     <>
       <SearchBar onSubmit={handleSearch} />
+      {error && <ErrorMessage />}
       <ImageGallery images={images} />
+      {loading && <Loader />}
+      {images.length > 0 && images.length % 12 === 0 && (
+        <LoadMoreBtn onClick={loadMore} />
+      )}
     </>
   );
 }

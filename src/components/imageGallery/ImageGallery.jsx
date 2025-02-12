@@ -2,8 +2,6 @@ import ImageCard from "../imageCard/ImageCard";
 import s from "./ImageGallery.module.css";
 
 const ImageGallery = ({ images }) => {
-  console.log("Images received in Gallery:", images);
-
   return (
     <ul className={s.galleryUl}>
       {images.map((image) => {

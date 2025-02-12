@@ -8,6 +8,7 @@ const SearchBar = ({ onSubmit }) => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
+    const form = evt.target;
 
     if (query.trim() === "") {
       toast.error("Please enter search term!");
