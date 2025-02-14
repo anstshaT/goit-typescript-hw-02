@@ -15,9 +15,10 @@ const SearchBar = ({ onSubmit }) => {
       return;
     }
 
-    console.log(query);
+    console.log("Search bar", query);
 
     onSubmit(query);
+    setQuery("");
   };
 
   return (
