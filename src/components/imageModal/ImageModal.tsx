@@ -1,5 +1,6 @@
-import ImageCard from "../imageCard/ImageCard";
 import Modal from "react-modal";
+import { Image } from "../../types";
+import React from "react";
 
 const customStyle = {
   overlay: {
@@ -17,7 +18,12 @@ const customStyle = {
   },
 };
 
-const ImageModal = ({ image, onClose }) => {
+interface ImageModalProps {
+  image: Image;
+  onClose: () => void;
+}
+
+const ImageModal: React.FC<ImageModalProps> = ({ image, onClose }) => {
   return (
     <div>
       <Modal style={customStyle} isOpen={!!image} onRequestClose={onClose}>

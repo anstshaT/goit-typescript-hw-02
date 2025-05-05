@@ -9,16 +9,17 @@ import LoadMoreBtn from "./components/loadMoreBtn/LoadMoreBtn";
 import ImageModal from "./components/imageModal/ImageModal";
 import Modal from "react-modal";
 import { Element, scroller } from "react-scroll";
+import { Image } from "./types";
 
 Modal.setAppElement("#root");
 
 export default function App() {
-  const [images, setImages] = useState([]);
-  const [query, setQuery] = useState("");
-  const [page, setPage] = useState(0);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [images, setImages] = useState<Image[]>([]);
+  const [query, setQuery] = useState<string>("");
+  const [page, setPage] = useState<number>(0);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
+  const [selectedImage, setSelectedImage] = useState<Image | null>(null);
 
   useEffect(() => {
     if (!query) return;
@@ -41,18 +42,18 @@ export default function App() {
     fetchImages();
   }, [query, page]);
 
-  const handleSearch = (topic) => {
+  const handleSearch = (topic: string): void => {
     setQuery(topic);
     setImages([]);
     setPage(1);
   };
 
-  const loadMore = () => {
+  const loadMore = (): void => {
     setPage((lastPage) => lastPage + 1);
     smoothScrollToBottom();
   };
 
-  const smoothScrollToBottom = () => {
+  const smoothScrollToBottom = (): void => {
     scroller.scrollTo("endOfPage", {
       duration: 1200,
       delay: 0,

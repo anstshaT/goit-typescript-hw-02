@@ -1,12 +1,16 @@
 import s from "./SearchBar.module.css";
 import toast, { Toaster } from "react-hot-toast";
 import { CiSearch } from "react-icons/ci";
-import { useState } from "react";
+import { FormEvent, useState, FC } from "react";
 
-const SearchBar = ({ onSubmit }) => {
-  const [query, setQuery] = useState("");
+interface SearchBarProps {
+  onSubmit: (topic: string) => void;
+}
 
-  const handleSubmit = (evt) => {
+const SearchBar: FC<SearchBarProps> = ({ onSubmit }) => {
+  const [query, setQuery] = useState<string>("");
+
+  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     const form = evt.target;
 
